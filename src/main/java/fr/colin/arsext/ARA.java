@@ -2,6 +2,8 @@ package fr.colin.arsext;
 
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import fr.colin.arsext.configuration.Config;
+import fr.colin.arsext.configuration.ConfigWrapper;
 import fr.colin.arsext.utils.Database;
 import fr.colin.arssdk.ARSdk;
 import fr.colin.arssdk.objects.User;
@@ -26,7 +28,8 @@ public class ARA extends Thread {
     public Socket socket;
 
     public static void main(String[] args) throws IOException {
-        database = new Database("pma.nwa2coco.fr", "uvrim_web", "dev", "3ypXvB2Amz6K46N9");
+        Config c = new ConfigWrapper().getConfig();
+        database = new Database(c.getDB_HOST(), c.getDB_NAME(), c.getDB_USER(), c.getDB_PASSWORD());
         sdk = ARSdk.DEFAULT_INSTANCE;
 
 
